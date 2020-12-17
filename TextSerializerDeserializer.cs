@@ -3,9 +3,9 @@ using System.IO;
 
 namespace Lab12
 {
-    class TextSerializerDeserializer : SerializerDeserializer
+    public class TextSerializerDeserializer : SerializerDeserializer
     {
-        List<Phone> SerializerDeserializer.Deserialize(string fileName)
+        public List<Phone> Deserialize(string fileName)
         {
             string[] fileLines = File.ReadAllLines(fileName);
             List<Phone> result = new List<Phone>();
@@ -16,7 +16,7 @@ namespace Lab12
             return result;
         }
 
-        void SerializerDeserializer.Serialize(string fileName, List<Phone> phones)
+        public void Serialize(string fileName, List<Phone> phones)
         {
             StreamWriter fileStream = new StreamWriter(fileName);
             foreach (Phone phone in phones)

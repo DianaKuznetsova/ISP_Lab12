@@ -2,7 +2,7 @@
 
 namespace Lab12
 {
-    class Phone
+    public class Phone
     {
         public string Manufacturer { get; }
         public string Model { get; }

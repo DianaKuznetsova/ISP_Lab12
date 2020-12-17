@@ -3,7 +3,7 @@
 namespace Lab12
 {
     //Factory for SerializerDeserializer creation
-    class PhoneSerialzierDeserializerFactory
+    public class PhoneSerialzierDeserializerFactory
     {
         public SerializerDeserializer CreateSerializerDeserializerForFile(String fileName)
         {
