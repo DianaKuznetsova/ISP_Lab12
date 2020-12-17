@@ -6,54 +6,34 @@ namespace Lab12.Tests
 {
     public class TextSerializerDeserializerTests
     {
+        private const string FILE_CONTENT = "120\r\nRedmi 4\r\nXiaomi\r\n";
+        private List<Phone> PHONES_LIST = new List<Phone>() {
+            new Phone("120", "Redmi 4", "Xiaomi")
+        };
+
         [Fact]
         public void SerializerTest()
         {
-            List<Phone> phones = new List<Phone>() {
-               new Phone("120", "Redmi 4", "Xiaomi")
-
-            };
-
-            string s = "120Redmi 4Xiaomi";
-
             string fileName = "test_text.txt";
             TextSerializerDeserializer textSerializer = new TextSerializerDeserializer();
-            textSerializer.Serialize(fileName, phones);
+            textSerializer.Serialize(fileName, PHONES_LIST);
 
-            StreamReader reader = new StreamReader("test_text.txt");
-            string line;
-            string result = "";
-            while ((line = reader.ReadLine()) != null)
-            {
-                result = result + line;
+            string result = File.ReadAllText(fileName);
 
-            }
-            Assert.Equal(s, result);
+            Assert.Equal(FILE_CONTENT, result);
         }
 
         [Fact]
         public void DeserializerTest()
         {
-            string fileName = "test_deserializer.txt";
-            List<Phone> phones = new List<Phone>() {
-               new Phone("120", "Redmi 4", "Xiaomi")
+            string fileName = "test_deserialize.txt";
 
-            };
-
-            StreamWriter fileStream = new StreamWriter(fileName);
-            foreach (Phone phone in phones)
-            {
-                fileStream.WriteLine(phone.IMEI);
-                fileStream.WriteLine(phone.Model);
-                fileStream.WriteLine(phone.Manufacturer);
-            }
-            fileStream.Flush();
-            fileStream.Close();
+            File.WriteAllText(fileName, FILE_CONTENT);
 
             TextSerializerDeserializer textDeserializer = new TextSerializerDeserializer();
             List<Phone> result = textDeserializer.Deserialize(fileName);
 
-            Assert.Equal(phones, result);
+            Assert.Equal(PHONES_LIST, result);
         }
     }
 }

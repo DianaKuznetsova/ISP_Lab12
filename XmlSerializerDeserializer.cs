@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace Lab12
 {
-    class XmlSerializerDeserializer : SerializerDeserializer
+    public class XmlSerializerDeserializer : SerializerDeserializer
     {
         public List<Phone> Deserialize(string fileName)
         {

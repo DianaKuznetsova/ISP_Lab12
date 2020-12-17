@@ -3,9 +3,9 @@ using System.IO;
 
 namespace Lab12
 {
-    class BinarySerializerDeserializer : SerializerDeserializer
+    public class BinarySerializerDeserializer : SerializerDeserializer
     {
-        List<Phone> SerializerDeserializer.Deserialize(string fileName)
+        public List<Phone> Deserialize(string fileName)
         {
             BinaryReader file = new BinaryReader(File.OpenRead(fileName));
             List<Phone> result = new List<Phone>();
@@ -17,7 +17,7 @@ namespace Lab12
             return result;
         }
 
-        void SerializerDeserializer.Serialize(string fileName, List<Phone> phones)
+        public void Serialize(string fileName, List<Phone> phones)
         {
             BinaryWriter file = new BinaryWriter(File.OpenWrite(fileName));
             foreach (Phone phone in phones)
